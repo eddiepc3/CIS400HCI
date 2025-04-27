@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototyping</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        .image-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .image-container img, .image-container video {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: none;
+        }
+
+        .image-container img.active, .image-container video.active {
+            display: block;
+            margin: auto;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .nav-button.left {
+            left: 10px;
+        }
+
+        .nav-button.right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- nav bar -->
+    <nav>
+        <a href="index.html" class="tab">Home</a>
+        <a href="design_process.html" class="tab">Design Process</a>
+        <a href="prototyping.html" class="tab">Prototyping</a>
+        <a href="heuristic_evaluation.html" class="tab">Heuristic Evaluation</a>
+        <a href="reflections_conclusion.html" class="tab">Reflections & Conclusion</a>
+    </nav>
+
+    <!-- main-->
+    <div class="container">
+        <h1>Prototyping</h1>
+
+        <h2>Tools Used for Prototyping</h2>
+        
+        <ul>
+            <h3>Figma for Lo-Fi prototype</h3>
+            <img src="lofi_image.jpg" alt="Lo-Fi Prototype" class="lofi">
+            
+            <h3>Android Studio for Hi-Fi prototype</h3>
+            <ul>
+                <li>Google Firebase</li>
+                <li>Firebase Authenticator (Sign In, Sign Up)</li>
+                <li>Firebase Real-Time Database (Profile, Language Preference)</li>
+                <li>Google Translate API for text-to-speech, speech-to-text</li>
+                <li>Free Dictionary API for definition, pronunciation</li><br></br>
+            </ul>
+            
+            <div class="image-container">
+                <button class="nav-button left" onclick="prevImage()">&#10094;</button>
+                <button class="nav-button right" onclick="nextImage()">&#10095;</button>
+                <img src="sign_in.jpg" alt="Sign In Screen" class="active">
+                <img src="view_profile.jpg" alt="Profile View">
+                <img src="edit_profile.jpg" alt="Edit Profile">
+                <img src="homepage.jpg" alt="Homepage">
+                <img src="nav_drawer.jpg" alt="Navigation Drawer">
+                <img src="translate.jpg" alt="Translation">
+                <img src="translate2.jpg" alt="Translation Example">
+                <img src="random_word.jpg" alt="Random Word">
+                <img src="random_word2.jpg" alt="Random Word Example">
+                <img src="dictionary.jpg" alt="Dictionary Screen">
+                <img src="dictionary2.jpg" alt="Dictionary Example">
+                <video controls class="scaled-video">
+                    <source src="demo_video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </ul>   
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.image-container img, .image-container video');
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
+            showImage(currentImageIndex);
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
+            showImage(currentImageIndex);
+        }
+    </script>
+
+</body>
+</html>
